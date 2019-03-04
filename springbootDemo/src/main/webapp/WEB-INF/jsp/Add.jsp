@@ -7,26 +7,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>编辑</title>
+<title>新增</title>
 </head>
 <body>
 	<from class="layui-form">
 		<div class="layui-form-item">
 			<label class="layui-form-label">姓名</label>
 			<div class="layui-input-inline">
-				<input type="text" name="username" id="username" value="${user.name}" class="layui-input">
+				<input type="text" name="username" id="username" value="" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">密码</label>
 			<div class="layui-input-inline">
-				<input type="text" name="password" id="password" value="${user.password}" class="layui-input">
+				<input type="text" name="password" id="password" value="" class="layui-input">
 			</div>
 		</div>
-			<input type="hidden" name="id" id="id" value="${user.id}" class="layui-input" >
 		<div class="layui-form-item">
 			<div class="layui-input-block">
-				<button class="layui-btn layui-btn-danger" onclick="tj()">提交</button>
+				<button class="layui-btn layui-btn-danger" onclick="add()">提交</button>
 			</div>
 		</div>
 	</form>
@@ -37,10 +36,9 @@
 function User(){
     this.name = $("#username").val();
     this.password = $("#password").val();
-    this.id = $("#id").val();
 }
 //编辑提交
-function tj(){
+function add(){
 		var user = new User()
 		layui.use('layer', function(){
 			 layer.open({
@@ -49,13 +47,13 @@ function tj(){
 				  ,yes: function(index, layero){
 				      $.ajax({
 					   	  type: 'GET',
-					   	  url: 'http://localhost:8080/tuser/editUser',//发送请求
+					   	  url: 'http://localhost:8080/tuser/addUser',//发送请求
 					   	  dataType : "json",
 					   	  data: {tuser:JSON.stringify(user)},
 					   	  success: function(result) {
 					   		  console.info(result);
 					   		  if(result>0){
-					   			  alert("编辑成功！");
+					   			  alert("新增成功！");
 					              window.location.replace("http://localhost:8080/tuser/getUser");  
 					   		  }
 						  },

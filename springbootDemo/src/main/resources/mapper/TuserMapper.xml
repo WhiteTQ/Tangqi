@@ -1,28 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="demo.springboot.mapper.TuserMapper">
-   <resultMap type="demo.springboot.model.Tuser" id="BaseResultMap">
-		<id column="id" property="id" jdbcType="INTEGER"/>
-		<result column="name" property="name" jdbcType="VARCHAR"/>
-		<result column="password" property="password" jdbcType="VARCHAR"/>
+	<resultMap type="demo.springboot.model.Tuser" id="BaseResultMap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
 	</resultMap>
 
-	 <select id="getAllUser" resultType="demo.springboot.model.Tuser">
-		select id,name,password from tuser
-	</select> 
-	
-	<delete id="delUser" parameterType="java.lang.Integer" >
-		DELETE FROM tuser WHERE id=#{id,jdbcType=INTEGER}
-	</delete>
-	
-	<update id="editUser" parameterType="demo.springboot.model.Tuser">
-        update tuser
-  		set name = #{name,jdbcType=VARCHAR},
-    		password = #{password,jdbcType=VARCHAR}
- 		where id = #{id,jdbcType=INTEGER}
-	</update>
-	
-	<select id="fidUserByID"  parameterType="int" resultType="demo.springboot.model.Tuser">
-		select id,name,password from tuser where id=#{id,jdbcType=INTEGER}
+	<select id="getAllUser" resultType="demo.springboot.model.Tuser">
+		select id,name,password from
+		tuser
 	</select>
+
+	<delete id="delUser" parameterType="java.lang.Integer">
+		DELETE
+		FROM tuser WHERE
+		id=#{id,jdbcType=INTEGER}
+	</delete>
+
+	<update id="editUser" parameterType="demo.springboot.model.Tuser">
+		update tuser
+		set name =
+		#{name,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR}
+		where
+		id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="fidUserByID" parameterType="int"
+		resultType="demo.springboot.model.Tuser">
+		select id,name,password from tuser where
+		id=#{id,jdbcType=INTEGER}
+	</select>
+
+	<insert id="addUser" parameterType="demo.springboot.model.Tuser">
+		insert into tuser (id,
+		name, password
+		)
+		values (#{id,jdbcType=INTEGER},
+		#{name,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}
+		)
+	</insert>
 </mapper>

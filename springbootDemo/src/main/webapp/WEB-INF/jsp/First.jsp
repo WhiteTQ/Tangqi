@@ -9,7 +9,8 @@
 </head>
 <body>
    <table class="layui-table"  lay-filter="tblist"  style=" width: 50%; max-width: 100%; margin-bottom: 20px; margin: auto;">
- 	 	<button class="layui-btn"  style="margin-left: 1375px;">新增</button>
+ 	 	<!-- <button class="layui-btn"  style="margin-left: 1375px;" onclick="add()">新增</button> -->
+		<a class="layui-btn" style="margin-left: 1375px;" href="/tuser/addJsp">新增</a>
  		<thead align="center">
 			<tr>
 			  <td>ID</td>
@@ -25,8 +26,8 @@
 				  <td>${users.name}</td>
 				  <td>${users.password}</td>
 				  <td>
-					    <button class="layui-btn layui-btn-warm"  onclick="edit()">编辑</button>
-					    <button class="layui-btn layui-btn-danger" onclick="del(${users.id})">删除</button>
+				 		 <a class="layui-btn layui-btn-warm"  href="/tuser/fidUserByID?id=${users.id}">编辑</a>
+					     <button class="layui-btn layui-btn-danger" onclick="del(${users.id})">删除</button>
 				  </td>
 				</tr>
 			</c:forEach>
@@ -37,20 +38,23 @@
 <script src="<%=request.getContextPath()%>/layui/layui.js" charset="utf-8"></script>
 <script>
 	//删除
-	function del(id){
+  function del(id){
 		layui.use('layer', function(){
 			 layer.open({
 				  content: '确认要删除吗'
 				  ,btn: ['确定', '取消']
 				  ,yes: function(index, layero){
 				      $.ajax({
-					   	  type: 'POST',
+					   	  type: 'GET',
 					   	  url: 'http://localhost:8080/tuser/delUser',//发送请求
 					   	  data: {id:id},
 					   	  success: function(result) {
 					   		  console.info(result);
-		                         location.reload();
-						  }
+					   		  location.reload();
+						  },
+					   	  error : function(data){
+					   		 console.info(data);
+					   	  }
 					 })
 				  }
 				  ,btn2: function(index, layero){
@@ -62,6 +66,6 @@
 				  }
 			});
 	});
-  } 
+  }
 </script> 
 </html>

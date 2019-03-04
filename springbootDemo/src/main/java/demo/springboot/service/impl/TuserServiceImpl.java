@@ -1,7 +1,6 @@
 package demo.springboot.service.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +32,11 @@ public class TuserServiceImpl implements TuserService {
 	@Override
 	public Tuser fidUserByID(Integer id) {
 		return tuserMapper.fidUserByID(id);
+	}
+
+	@Override
+	public int addUser(Tuser tuser) {
+		return tuserMapper.addUser(tuser);
 	}
 
 }
