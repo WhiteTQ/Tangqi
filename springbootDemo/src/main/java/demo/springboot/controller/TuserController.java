@@ -27,7 +27,7 @@ import demo.springboot.service.TuserService;
 // @RestController 此注解指明该控制器直接返回数据，而不进行页面跳转
 @RequestMapping("/tuser")
 // 配置spring 扫描路径
-@Api(value = "TuserController-用户接口模拟")
+@Api(value = "TuserController-Tuser用户接口模拟")
 public class TuserController {
 	@Autowired
 	private TuserService tuerService;
@@ -96,7 +96,7 @@ public class TuserController {
 	// 一般在异步获取数据时使用，在使用@RequestMapping后，返回值通常解析为跳转路径，加上@responsebody后返回结果不会被解析为跳转路径，而是直接写入HTTP
 	// response body中。
 	@RequestMapping(value = "/addJsp", method = RequestMethod.GET)
-	@ApiOperation(value = "新增用户信息", notes = "无")
+	@ApiOperation(value = "跳转到新增用户信息页面", notes = "无")
 	public String addUserJsp(HttpServletRequest request) {
 		return "/Add";
 	}
